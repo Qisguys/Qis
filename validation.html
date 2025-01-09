@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+
+    <h2>Registration Form</h2>
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName"><br><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br><br>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile"><br><br>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address"></textarea><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            // Validate First Name
+            var firstName = document.getElementById("firstName").value;
+            var namePattern = /^[a-zA-Z]+$/;  // Regular expression to match alphabets only
+            if (firstName.length < 6 || !namePattern.test(firstName)) {
+                alert("First Name should contain only alphabets and be at least 6 characters long.");
+                return false;
+            }
+
+            // Validate Password
+            var password = document.getElementById("password").value;
+            if (password.length < 6) {
+                alert("Password should be at least 6 characters long.");
+                return false;
+            }
+
+            // Validate E-mail
+            var email = document.getElementById("email").value;
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;  // Standard email pattern
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address (e.g., name@domain.com).");
+                return false;
+            }
+
+            // Validate Mobile Number
+            var mobile = document.getElementById("mobile").value;
+            var mobilePattern = /^[0-9]{10}$/;  // Checks if the phone number has exactly 10 digits
+            if (!mobilePattern.test(mobile)) {
+                alert("Mobile number should contain exactly 10 digits.");
+                return false;
+            }
+
+            // Validate Last Name (Non-empty)
+            var lastName = document.getElementById("lastName").value;
+            if (lastName.trim() === "") {
+                alert("Last Name should not be empty.");
+                return false;
+            }
+
+            // Validate Address (Non-empty)
+            var address = document.getElementById("address").value;
+            if (address.trim() === "") {
+                alert("Address should not be empty.");
+                return false;
+            }
+
+            // If all validations pass
+            return true;
+        }
+    </script>
+
+</body>
+</html>
